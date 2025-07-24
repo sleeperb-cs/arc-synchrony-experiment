@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from reservoir_coupling import Reservoir
+from reservoirpy.nodes import Reservoir
 import torch.nn as nn
 
 class VanDerPol:

@@ -37,3 +37,17 @@ class SymbolicResonanceExplorer:
                 'pattern': self.extract_topological_signature(),
                 'cascade_state': self.cascade_potential
             })
+
+def measure_information_curvature(self, trajectories):
+    """Measure curvature at multiple scales"""
+    curvatures = []
+    for trajectory in trajectories:
+        if len(trajectory.shape) == 1:
+            trajectory = trajectory.reshape(-1, 1)
+        
+        # Local curvature through second derivatives
+        gradients = np.gradient(trajectory, axis=0)
+        curvature = np.mean(np.abs(np.gradient(gradients, axis=0)))
+        curvatures.append(curvature)
+    
+    return np.array(curvatures)
