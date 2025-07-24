@@ -11,12 +11,17 @@ class SymbolHunter:
         self.all_states = []
         self.all_coherences = []
         self.pca = PCA(n_components=3)
-        
+    
     def hunt(self, input_pattern, duration=1000):
-        """Hunt for symbols in the phase space"""
         for t in range(duration):
             state, coherence = self.reasoner.resonate(input_pattern)
             
+            # Ensure state is 1D array
+            if hasattr(state, 'flatten'):
+                state = state.flatten()
+            elif len(state.shape) > 1:
+                state = state.reshape(-1)
+                
             self.all_states.append(state)
             self.all_coherences.append(coherence)
             

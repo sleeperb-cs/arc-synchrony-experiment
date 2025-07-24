@@ -11,8 +11,8 @@ grid[15:25, 15:25] = 2  # Overlapping square
 
 # Birth the system
 reasoner = SynchronizedReasoner()
+
 # Begin the symbol hunt!
-hunt = SymbolHunter(reasoner)
-
-
-hunt.create_phase_portraits
+hunter = SymbolHunter(reasoner)
+hunter.hunt(grid, duration=500)  # Actually hunt for symbols
+hunter.create_phase_portraits()  # Then create the visualization
